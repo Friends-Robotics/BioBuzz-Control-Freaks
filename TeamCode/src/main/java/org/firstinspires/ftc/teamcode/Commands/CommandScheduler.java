@@ -20,7 +20,7 @@ public class CommandScheduler {
             c.execute();
 
             if(c.isFinished()) {
-                c.end();
+                c.end(false);
                 it.remove();
             }
         }

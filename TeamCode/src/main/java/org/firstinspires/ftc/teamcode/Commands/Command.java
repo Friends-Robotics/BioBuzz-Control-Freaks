@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands;
 public interface Command {
     void initialize();
     void execute();
-    void end();
+    void end(boolean interrupted);
     boolean isFinished();
 
 }

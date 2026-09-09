@@ -24,6 +24,6 @@ public class FollowPathComand implements Command {
     @Override
     public boolean isFinished() {return !follower.isBusy();}
     @Override
-    public void end() {follower.breakFollowing();}
+    public void end(boolean interrupted) {follower.breakFollowing();}
 
 }

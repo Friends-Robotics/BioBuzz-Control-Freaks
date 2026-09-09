@@ -1,13 +1,16 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class DriveSubsystem {
 
-    private DcMotorEx frontLeftMotor;
-    private DcMotorEx backLeftMotor;
-    private DcMotorEx frontRightMotor;
-    private DcMotorEx backRightMotor;
+    private final DcMotor BRM;
+    private final DcMotor BLM;
+    private final DcMotor FRM;
+    private final DcMotor FLM;
+
     public static final double DEADBAND = 0.05;
     public static final double SPEED_MULTIPLIER = 0.8;
     public static final double STRAFE_SPEED_MULTIPLIER = 0.9;
@@ -18,11 +21,21 @@ public class DriveSubsystem {
     private double lastFR = 0;
     private double lastBR = 0;
 
-    public DriveSubsystem(DcMotorEx frontLeftMotor, DcMotorEx backLeftMotor, DcMotorEx frontRightMotor, DcMotorEx backRightMotor) {
-        this.frontLeftMotor = frontLeftMotor;
-        this.backLeftMotor = backLeftMotor;
-        this.frontRightMotor = frontRightMotor;
-        this.backRightMotor = backRightMotor;
+    public DriveSubsystem(com.qualcomm.robotcore.hardware.HardwareMap hardwareMap) {
+
+
+        FRM = hardwareMap.get(DcMotor.class, "FRM");
+        FRM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        FRM.setDirection(DcMotorSimple.Direction.FORWARD);
+        FLM = hardwareMap.get(DcMotor.class, "FLM");
+        FLM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        FLM.setDirection(DcMotorSimple.Direction.REVERSE);
+        BRM = hardwareMap.get(DcMotor.class, "BRM");
+        BRM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        BRM.setDirection(DcMotorSimple.Direction.FORWARD);
+        BLM = hardwareMap.get(DcMotor.class, "BLM");
+        BLM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        BLM.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     public void drive( double drive, double strafe, double rotate)
     {
@@ -49,17 +62,19 @@ public class DriveSubsystem {
         lastFR = ramp(lastFR, targetFR * SPEED_MULTIPLIER);
         lastBR = ramp(lastBR, targetBR * SPEED_MULTIPLIER);
 
-        frontLeftMotor.setPower(lastFL);
-        backLeftMotor.setPower(lastBL);
-        frontRightMotor.setPower(lastFR);
-        backRightMotor.setPower(lastBR);
+        FLM.setPower(lastFL);
+        BLM.setPower(lastBL);
+        FRM.setPower(lastFR);
+        BRM.setPower(lastBR);
     }
 
+
+
     public void stop() {
-        frontLeftMotor.setPower(0);
-        backLeftMotor.setPower(0);
-        frontRightMotor.setPower(0);
-        backRightMotor.setPower(0);
+        FLM.setPower(0);
+        BLM.setPower(0);
+        FRM.setPower(0);
+        BRM.setPower(0);
 
         lastFL = 0;
         lastBL = 0;
