@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Commands;
+package org.firstinspires.ftc.teamcode.friends.commands;
 
 import java.util.Arrays;
 import java.util.List;

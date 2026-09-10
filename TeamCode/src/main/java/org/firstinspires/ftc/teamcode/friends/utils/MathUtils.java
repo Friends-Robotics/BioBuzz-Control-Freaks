@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Utils;
+package org.firstinspires.ftc.teamcode.friends.utils;
 
 public class MathUtils {
     public static double normalizeAngle(double angle) {
