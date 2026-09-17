@@ -5,37 +5,65 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
+
+import org.firstinspires.ftc.teamcode.friends.subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.friends.subsystems.Limelight;
 
 @Disabled
 @TeleOp(name = "Limelight Test", group = "Test")
 public class LimelightTest extends LinearOpMode {
-    private Limelight3A limelight;
+    Limelight limelight = new Limelight(hardwareMap);
+    int index = 0;
+    int rate = 100;
+
 
     @Override
     public void runOpMode(){
-        limelight = hardwareMap.get(Limelight3A.class, "limelight");
-        limelight.setPollRateHz(100);
-        limelight.start();
-        limelight.pipelineSwitch(0);
+        limelight.Start();
 
         waitForStart();
 
         if (isStopRequested()) return;
 
         while (opModeIsActive()){
-            LLResult result = limelight.getLatestResult();
-            if(result != null && result.isValid()) {
-                double tx = result.getTx();
-                double ty = result.getTy();
-                double ta = result.getTa();
-
-                telemetry.addData("Target X", tx);
-                telemetry.addData("Target Y", ty);
-                telemetry.addData("Target Area", ta);
-            } else {
-                telemetry.addLine("No valid limelight data");
+            limelight.Update();
+            if(gamepad1.dpad_right)
+            {
+                index++;
             }
-            telemetry.update();
+            if(gamepad1.dpad_left)
+            {
+                index--;
+            }
+            if(gamepad1.dpad_up)
+            {
+                rate += 100;
+            }
+            if(gamepad1.dpad_down)
+            {
+                rate -= 100;
+            }
+
+            limelight.Switch(index);
+            limelight.SetRate(rate);
+
+            HandleTelemetry();
+
         }
     }
+
+    public void HandleTelemetry()
+    {
+        telemetry.addLine("------TELEMETRY------");
+        telemetry.addData("Pipeline -- ", index);
+        telemetry.addLine();
+        telemetry.addData("Rate hz -- ", rate);
+        telemetry.addLine();
+        telemetry.addData("Tx -- ",limelight.tx);
+        telemetry.addData("Ty -- ",limelight.ty);
+        telemetry.addData("Ta -- ",limelight.ta);
+        //nigeria
+    }
+
 }
