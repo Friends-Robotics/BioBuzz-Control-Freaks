@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.teamcode.friends.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.friends.subsystems.Limelight;
 
-@Disabled
+
 @TeleOp(name = "Limelight Test", group = "Test")
 public class LimelightTest extends LinearOpMode {
     Limelight limelight = new Limelight(hardwareMap);
