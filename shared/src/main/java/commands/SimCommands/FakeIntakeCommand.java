@@ -2,28 +2,26 @@ package commands.SimCommands;
 
 import commands.base.Command;
 
-public class FakeFollowPathCommand implements Command {
-
-    private int cycles;
+public class FakeIntakeCommand implements Command {
+    int cycle = 0;
     @Override
     public void initialize() {
-        System.out.println("Path started");
+        System.out.println("Intake started");
     }
 
     @Override
     public void execute() {
-        cycles++;
-        System.out.println("Following Path...." );
-
+        System.out.println("Intaking....");
+        cycle++;
     }
 
     @Override
     public boolean isFinished() {
-        return cycles >= 10;
+        return cycle >= 10;
     }
 
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Path ended");
+        System.out.println("Intake ended");
     }
 }

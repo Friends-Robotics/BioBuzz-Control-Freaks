@@ -31,7 +31,7 @@ public class FollowPathCommand implements Command {
     @Override
     public boolean isFinished() {return !follower.isBusy();}
     @Override
-    public void end(boolean interrupted) {follower.idle();}
+    public void end(boolean interrupted) {follower.atParametricEnd();}
 
     @Override
     public Set<Subsystem> getRequirements() {
