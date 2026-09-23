@@ -5,7 +5,7 @@ import com.pedropathing.revhub.drivetrains.Mecanum;
 import com.pedropathing.revhub.localizers.PinpointLocalizer;
 import com.pedropathing.tuning.autotune.Procedure;
 import com.pedropathing.tuning.autotune.Tuner;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+
 
 import org.firstinspires.ftc.teamcode.pedro.procedure.ForesightTuner;
 import org.firstinspires.ftc.teamcode.pedro.procedure.MecanumTuner;
