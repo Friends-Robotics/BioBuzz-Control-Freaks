@@ -7,6 +7,11 @@ import com.pedropathing.tuning.autotune.Procedure;
 import com.pedropathing.tuning.autotune.Tuner;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.pedro.procedure.ForesightTuner;
+import org.firstinspires.ftc.teamcode.pedro.procedure.MecanumTuner;
+import org.firstinspires.ftc.teamcode.pedro.procedure.PinpointTuner;
+import org.firstinspires.ftc.teamcode.pedro.procedure.Tests;
+
 
 public class Tuning {
 
