@@ -17,7 +17,7 @@ public class FakeIntakeCommand implements Command {
 
     @Override
     public boolean isFinished() {
-        return cycle >= 10;
+        return cycle >= 100;
     }
 
     @Override

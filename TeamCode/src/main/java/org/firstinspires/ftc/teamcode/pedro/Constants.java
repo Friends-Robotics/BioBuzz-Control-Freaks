@@ -15,21 +15,16 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Constants {
-    public static MecanumConfig drivetrainConfig = new MecanumConfig(
-            c -> {
-                c.frontLeftName.set("FLM");
-                c.backLeftName.set("RLM");
-                c.frontRightName.set("FRM");
-                c.backRightName.set("BRM");
-
-                c.frontLeftDirection.set(DcMotorSimple.Direction.REVERSE);
-                c.backLeftDirection.set(DcMotorSimple.Direction.REVERSE);
-                c.frontRightDirection.set(DcMotorSimple.Direction.FORWARD);
-                c.backRightDirection.set(DcMotorSimple.Direction.FORWARD);
-
-                c.manualBrakeMode.set(true);
-            }
-    );
+    public static MecanumConfig drivetrainConfig = new MecanumConfig(c -> {
+        c.frontLeftName.set("FLM");
+        c.frontRightName.set("FRM");
+        c.backLeftName.set("BLM");
+        c.backRightName.set("BRM");
+        c.frontLeftDirection.set(DcMotorSimple.Direction.FORWARD);
+        c.frontRightDirection.set(DcMotorSimple.Direction.REVERSE);
+        c.backLeftDirection.set(DcMotorSimple.Direction.FORWARD);
+        c.backRightDirection.set(DcMotorSimple.Direction.REVERSE);
+    });
 
     public static PinpointConfig localizerConfig = new PinpointConfig(
             c -> {
