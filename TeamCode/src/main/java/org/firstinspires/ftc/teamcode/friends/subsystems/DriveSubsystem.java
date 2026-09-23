@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.friends.subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-public class DriveSubsystem {
+import commands.base.Subsystem;
+
+public class DriveSubsystem implements Subsystem{
 
     private final DcMotor BRM;
     private final DcMotor BLM;
