@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.Opmodes.Auto;
 
+import com.pedropathing.api.PoseFactory;
 import com.pedropathing.follower.Follower;
+import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
@@ -16,9 +18,13 @@ import commands.base.CommandScheduler;
 @Autonomous
 public class AutoBlue extends OpMode {
 
+    private final PoseFactory poseFactory = PoseFactory.degrees();
+
     private Follower follower;
     CommandScheduler scheduler = new CommandScheduler();
 
+
+    private final Pose startPose = poseFactory.of(24, 24, 0);
     Command auto = new SequentialCommandGroup(
             new FakeFollowPathCommand(),
             new FakeIntakeCommand()
@@ -28,7 +34,7 @@ public class AutoBlue extends OpMode {
     public void init() {
         scheduler.cancelAll();
         follower = Constants.create(hardwareMap);
-        follower.setPose();
+        follower.setPose(startPose);
         follower.update();
     }
     @Override
