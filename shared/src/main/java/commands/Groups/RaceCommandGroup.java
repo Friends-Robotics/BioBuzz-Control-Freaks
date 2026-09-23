@@ -30,13 +30,21 @@ public class RaceCommandGroup extends CommandGroup {
             command.execute();
 
             if (command.isFinished()) {
-                for(Command command1 : commands)
-                {
-                    command1.end(true);
-                    iterator.remove();
+
+
+                command.end(false);
+
+
+                for (Command other : commands) {
+                    if (other != command) {
+                        other.end(true);
+                    }
                 }
 
+                // The race is over
                 commands.clear();
+
+                return;
             }
         }
     }
