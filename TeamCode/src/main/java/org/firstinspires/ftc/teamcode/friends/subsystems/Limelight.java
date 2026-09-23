@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import commands.base.Subsystem;
 
-
 public class Limelight implements Subsystem {
 
     public double tx, ty, ta;
@@ -14,7 +13,6 @@ public class Limelight implements Subsystem {
 
     public Limelight(HardwareMap hardwareMap){
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
-
     }
 
     public void SetRate(int rate) {limelight.setPollRateHz(rate);}
@@ -34,7 +32,4 @@ public class Limelight implements Subsystem {
            ta = 0;
         }
     }
-
-
-
 }

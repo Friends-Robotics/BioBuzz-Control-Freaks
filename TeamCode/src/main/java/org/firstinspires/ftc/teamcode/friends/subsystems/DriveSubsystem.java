@@ -23,17 +23,18 @@ public class DriveSubsystem implements Subsystem{
     private double lastBR = 0;
 
     public DriveSubsystem(com.qualcomm.robotcore.hardware.HardwareMap hardwareMap) {
-
-
         FRM = hardwareMap.get(DcMotor.class, "FRM");
         FRM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FRM.setDirection(DcMotorSimple.Direction.FORWARD);
+
         FLM = hardwareMap.get(DcMotor.class, "FLM");
         FLM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FLM.setDirection(DcMotorSimple.Direction.REVERSE);
+
         BRM = hardwareMap.get(DcMotor.class, "BRM");
         BRM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BRM.setDirection(DcMotorSimple.Direction.FORWARD);
+
         BLM = hardwareMap.get(DcMotor.class, "BLM");
         BLM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BLM.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -69,8 +70,6 @@ public class DriveSubsystem implements Subsystem{
         BRM.setPower(lastBR);
     }
 
-
-
     public void stop() {
         FLM.setPower(0);
         BLM.setPower(0);
@@ -91,5 +90,4 @@ public class DriveSubsystem implements Subsystem{
             return target;
         }
     }
-
 }
