@@ -5,7 +5,7 @@ import com.pedropathing.revhub.drivetrains.Mecanum;
 import com.pedropathing.revhub.localizers.PinpointLocalizer;
 import com.pedropathing.tuning.autotune.Procedure;
 import com.pedropathing.tuning.autotune.Tuner;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+
 
 import org.firstinspires.ftc.teamcode.pedro.procedure.ForesightTuner;
 import org.firstinspires.ftc.teamcode.pedro.procedure.MecanumTuner;
@@ -35,6 +35,7 @@ public class Tuning {
         return new Tests(hardwareMap -> new Mecanum(hardwareMap, Constants.drivetrainConfig), (hardwareMap -> new PinpointLocalizer(hardwareMap, Constants.localizerConfig)), () -> new Foresight(Constants.foresightConfig));
     } // While connected to the Robot Controller, open the following address in your browser: http://192.168.43.1:10158 Select Tests Procedure.
 
+    //FSL28564 WiFi password for robot
 
 
 
