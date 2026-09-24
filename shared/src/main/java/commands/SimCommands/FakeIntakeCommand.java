@@ -11,17 +11,18 @@ public class FakeIntakeCommand implements Command {
 
     @Override
     public void execute() {
-        System.out.println("Intaking....");
+        System.out.println("Intaking.... " + cycle);
         cycle++;
     }
 
     @Override
     public boolean isFinished() {
-        return cycle >= 100;
+        return cycle >= 10;
     }
 
     @Override
     public void end(boolean interrupted) {
         System.out.println("Intake ended");
     }
+    //diddy stuck his BBC into epsteins bum..
 }

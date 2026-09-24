@@ -5,9 +5,9 @@ import commands.base.Command;
 public class WaitCommand implements Command {
 
     private long startTime;
-    private long duration;
+    private final double duration;
 
-    public WaitCommand(long duration) {
+    public WaitCommand(double duration) {
         this.duration = duration;
     }
 
@@ -22,7 +22,7 @@ public class WaitCommand implements Command {
 
     @Override
     public boolean isFinished() {
-        return System.currentTimeMillis() - startTime >= duration;
+        return System.currentTimeMillis() - startTime >= duration * 1000;
     }
 
     @Override

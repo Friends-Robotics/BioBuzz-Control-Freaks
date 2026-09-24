@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.friends.Tests;
 
+import commands.Groups.DeadlineCommandGroup;
 import commands.Groups.ParallelCommandGroup;
 import commands.Groups.RaceCommandGroup;
 import commands.SimCommands.FakeIntakeCommand;
+import commands.UtilCommands.WaitCommand;
 import commands.base.Command;
 import commands.base.CommandScheduler;
 import commands.Groups.SequentialCommandGroup;
@@ -14,9 +16,9 @@ public class CommandTest {
 
         CommandScheduler scheduler = new CommandScheduler();
 
-        Command auto = new RaceCommandGroup(
-                new FakeFollowPathCommand(),
-                new FakeIntakeCommand()
+        Command auto = new DeadlineCommandGroup(
+                new FakeIntakeCommand(),
+                new FakeFollowPathCommand()
         );
 
         scheduler.schedule(auto);
