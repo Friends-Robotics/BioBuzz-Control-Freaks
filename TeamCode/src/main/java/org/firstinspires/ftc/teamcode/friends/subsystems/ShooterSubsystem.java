@@ -28,7 +28,7 @@ public class ShooterSubsystem implements Subsystem {
     }
 
     public void setPower(double power) {
-        if (power < MIN_POWER) power = 0;
+        if (power < MIN_POWER) power = MIN_POWER;
         else if (power > MAX_POWER) power = MAX_POWER;
 
         shooterMotor1.setPower(power);
