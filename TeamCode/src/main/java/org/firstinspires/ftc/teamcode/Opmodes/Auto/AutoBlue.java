@@ -1,17 +1,28 @@
 package org.firstinspires.ftc.teamcode.Opmodes.Auto;
 
+import static com.pedropathing.api.Paths.line;
+
 import com.pedropathing.api.PoseFactory;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
+import com.pedropathing.paths.Path;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.pedro.Constants;
-import org.firstinspires.ftc.teamcode.pedroPathing.Paths.BluePaths;
+import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.FollowPathCommand;
+import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter.SpinUpShooterCommand;
+import org.firstinspires.ftc.teamcode.friends.subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.friends.subsystems.ShooterSubsystem;
+import org.firstinspires.ftc.teamcode.pedro.PedroConstants;
 
+
+import Utils.Constants;
+import commands.Groups.DeadlineCommandGroup;
+import commands.Groups.ParallelCommandGroup;
 import commands.Groups.SequentialCommandGroup;
-import commands.SimCommands.FakeFollowPathCommand;
-import commands.SimCommands.FakeIntakeCommand;
+
+import commands.UtilCommands.WaitUntilCommand;
 import commands.base.Command;
 import commands.base.CommandScheduler;
 
@@ -22,18 +33,29 @@ public class AutoBlue extends OpMode {
 
     private Follower follower;
     CommandScheduler scheduler = new CommandScheduler();
+    HardwareMap hardwareMap;
 
+    ShooterSubsystem shooter;
+    DriveSubsystem drive;
 
     private final Pose startPose = poseFactory.of(24, 24, 0);
+    private final Pose shootPose = poseFactory.of(24, 24, 0);
+
+    private Path startToShoot() {
+        return line(startPose, shootPose).linear(startPose, shootPose);
+    }
+
     Command auto = new SequentialCommandGroup(
-            new FakeFollowPathCommand(),
-            new FakeIntakeCommand()
+            new DeadlineCommandGroup(
+                    new FollowPathCommand(follower, startToShoot(),drive),
+                    new SpinUpShooterCommand(shooter, Constants.TargetRPM)
+            )
     );
 
     @Override
     public void init() {
         scheduler.cancelAll();
-        follower = Constants.create(hardwareMap);
+        follower = PedroConstants.create(hardwareMap);
         follower.setPose(startPose);
         follower.update();
     }

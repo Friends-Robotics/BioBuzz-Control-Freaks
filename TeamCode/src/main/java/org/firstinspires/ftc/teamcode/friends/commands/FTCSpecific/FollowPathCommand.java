@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.friends.commands.FTCSpecificCommands;
+package org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.paths.Path;

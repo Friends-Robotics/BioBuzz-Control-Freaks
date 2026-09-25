@@ -50,4 +50,11 @@ public class ShooterSubsystem implements Subsystem {
     public double getCurrent(CurrentUnit currentUnit) {
         return shooterMotor1.getCurrent(currentUnit) + shooterMotor2.getCurrent(currentUnit);
     }
+
+    public void setRPM(double rpm){
+        double ticksPerSecond = (rpm * SHOOTER_TICKS_PER_REV) / 60.0;
+
+        shooterMotor1.setVelocity(ticksPerSecond);
+        shooterMotor2.setVelocity(ticksPerSecond);
+    }
 }

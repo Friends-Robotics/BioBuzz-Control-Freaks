@@ -9,6 +9,7 @@ public class DeadlineCommandGroup extends CommandGroup{
     Command firstcommand;
 
     public DeadlineCommandGroup(Command firstcommand, Command... commands) {
+
         super(commands);
         this.firstcommand = firstcommand;
         checkForConflicts();

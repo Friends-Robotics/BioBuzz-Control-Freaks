@@ -1,32 +1,36 @@
-package org.firstinspires.ftc.teamcode.friends.commands.FTCSpecificCommands;
+package org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter;
 
 import org.firstinspires.ftc.teamcode.friends.subsystems.ShooterSubsystem;
 
 import java.util.Set;
 
+import commands.UtilCommands.RunCommand;
+import commands.UtilCommands.WaitUntilCommand;
 import commands.base.Command;
 import commands.base.Subsystem;
 
 public class SpinUpShooterCommand implements Command {
 
-    double RPM;
+
     double TargetRPM;
     ShooterSubsystem shooter;
-    public SpinUpShooterCommand(ShooterSubsystem shooter, double RPM, double TargetRPM)
+    public SpinUpShooterCommand(ShooterSubsystem shooter, double TargetRPM)
     {
-        this.RPM = RPM;
+
         this.TargetRPM = TargetRPM;
         this.shooter = shooter;
     }
 
     @Override
-    public void initialize() {}
+    public void initialize() {shooter.setRPM(TargetRPM);}
     @Override
-    public void execute() {}
+    public void execute() {shooter.setRPM(TargetRPM);}
     @Override
-    public boolean isFinished() {return true;}
+    public boolean isFinished() {return false;}
     @Override
-    public void end(boolean interrupted) { }
+    public void end(boolean interrupted) {
+
+    }
 
     @Override
     public Set<Subsystem> getRequirements() {

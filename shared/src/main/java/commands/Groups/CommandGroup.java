@@ -39,7 +39,7 @@ public abstract class CommandGroup implements Command {
             {
                 if(!getRequirements().add(subsystem))
                 {
-                    throw new IllegalArgumentException("Can't have commands that contain the same subsystem for this group silly...");
+                    throw new IllegalArgumentException("Can't have commands that contain the same subsystem for this group silly... Hugo");
                 }
             }
 
