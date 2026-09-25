@@ -67,7 +67,6 @@ public class AutoBlue extends OpMode {
     public void loop() {
         follower.update();
         scheduler.run();
-        // add your other methods needed in loop here
         HandleTelemetry();
     }
     void HandleTelemetry()
