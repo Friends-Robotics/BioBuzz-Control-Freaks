@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.friends.Controllers.ShooterController;
 import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.FollowPathCommand;
 import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter.SpinUpShooterCommand;
 import org.firstinspires.ftc.teamcode.friends.subsystems.DriveSubsystem;
@@ -38,6 +39,8 @@ public class AutoBlue extends OpMode {
     ShooterSubsystem shooter;
     DriveSubsystem drive;
 
+    ShooterController controller;
+
     private final Pose startPose = poseFactory.of(24, 24, 0);
     private final Pose shootPose = poseFactory.of(24, 24, 0);
 
@@ -48,7 +51,7 @@ public class AutoBlue extends OpMode {
     Command auto = new SequentialCommandGroup(
             new DeadlineCommandGroup(
                     new FollowPathCommand(follower, startToShoot(),drive),
-                    new SpinUpShooterCommand(shooter, Constants.TargetRPM)
+                    new SpinUpShooterCommand(shooter,controller,Constants.Shooter.TARGET_RPM )
             )
     );
 
