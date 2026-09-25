@@ -37,9 +37,7 @@ public class ShooterController {
         );
     }
 
-    /**
-     * Update shooter control.
-     */
+
     public double update(double targetRPM, double measuredRPM) {
 
         this.targetRPM = targetRPM;
@@ -55,21 +53,16 @@ public class ShooterController {
         return output;
     }
 
-    /**
-     * Returns whether the shooter is currently at its target RPM.
-     */
+
     public boolean isAtTargetRPM() {
         return Math.abs(currentRPM - targetRPM)
                 <= Constants.Shooter.RPM_TOLERANCE;
     }
 
-    /**
-     * Returns true when the shooter has been at the target RPM
-     * consistently for the required amount of time.
-     */
+
     public boolean isReady() {
         return isAtTargetRPM()
-                && readyTimer.seconds() >= 0.5;
+                && readyTimer.seconds() >= 0.;
     }
 
     public double getRPM() {
