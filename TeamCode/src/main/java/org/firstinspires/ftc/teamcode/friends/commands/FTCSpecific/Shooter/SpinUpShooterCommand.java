@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter;
 
-import Controllers.ShooterController;
+
+import org.firstinspires.ftc.teamcode.friends.Controllers.ShooterController;
 import org.firstinspires.ftc.teamcode.friends.subsystems.ShooterSubsystem;
 
 import java.util.Set;
