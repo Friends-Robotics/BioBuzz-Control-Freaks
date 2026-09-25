@@ -20,10 +20,8 @@ import org.firstinspires.ftc.teamcode.pedro.PedroConstants;
 
 import Utils.Constants;
 import commands.Groups.DeadlineCommandGroup;
-import commands.Groups.ParallelCommandGroup;
 import commands.Groups.SequentialCommandGroup;
 
-import commands.UtilCommands.WaitUntilCommand;
 import commands.base.Command;
 import commands.base.CommandScheduler;
 
@@ -51,7 +49,7 @@ public class AutoBlue extends OpMode {
     Command auto = new SequentialCommandGroup(
             new DeadlineCommandGroup(
                     new FollowPathCommand(follower, startToShoot(),drive),
-                    new SpinUpShooterCommand(shooter,controller,Constants.Shooter.TARGET_RPM )
+                    new SpinUpShooterCommand(shooter, controller ,Constants.Shooter.TARGET_RPM )
             )
     );
 
