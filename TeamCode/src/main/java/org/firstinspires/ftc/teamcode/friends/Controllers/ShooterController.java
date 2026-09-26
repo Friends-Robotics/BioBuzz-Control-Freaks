@@ -53,7 +53,6 @@ public class ShooterController {
         return output;
     }
 
-
     public boolean isAtTargetRPM() {
         return Math.abs(currentRPM - targetRPM)
                 <= Constants.Shooter.RPM_TOLERANCE;
@@ -62,7 +61,7 @@ public class ShooterController {
 
     public boolean isReady() {
         return isAtTargetRPM()
-                && readyTimer.seconds() >= 0.;
+                && readyTimer.seconds() >= 0.5;
     }
 
     public double getRPM() {

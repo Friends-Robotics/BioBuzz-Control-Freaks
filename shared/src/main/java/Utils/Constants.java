@@ -45,6 +45,14 @@ public final class Constants {
         private Shooter() {}
     }
 
+    public static final class Intake
+    {
+        public static final int ballsBeforeRecovery = 0; //At base distance. May interpolate if we decide to shoot from multiple distances
+        public static final int MaxBalls = 4;
+    }
+
+
+
 
 
 }
