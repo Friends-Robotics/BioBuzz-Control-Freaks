@@ -59,7 +59,6 @@ public class ShootCommand implements Command {
 
             case SPINNING_UP:
 
-
                 if (controller.isReady()) {
 
                     currentState = ShootState.SHOOTING;
@@ -67,7 +66,6 @@ public class ShootCommand implements Command {
                 break;
 
             case SHOOTING:
-
 
                 shooter.feed();
 

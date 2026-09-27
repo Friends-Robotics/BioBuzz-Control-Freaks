@@ -12,8 +12,10 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.friends.Controllers.ShooterController;
 import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.FollowPathCommand;
+import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter.ShootCommand;
 import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter.SpinUpShooterCommand;
 import org.firstinspires.ftc.teamcode.friends.subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.friends.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.friends.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.pedro.PedroConstants;
 
@@ -36,6 +38,7 @@ public class AutoBlue extends OpMode {
 
     ShooterSubsystem shooter;
     DriveSubsystem drive;
+    IntakeSubsystem intake;
 
     ShooterController controller;
 
@@ -50,12 +53,16 @@ public class AutoBlue extends OpMode {
             new DeadlineCommandGroup(
                     new FollowPathCommand(follower, startToShoot(),drive),
                     new SpinUpShooterCommand(shooter, controller ,Constants.Shooter.TARGET_RPM )
-            )
+            ),
+            new ShootCommand(shooter, controller, intake,Constants.Shooter.TARGET_RPM)
     );
 
     @Override
     public void init() {
         scheduler.cancelAll();
+        drive = new DriveSubsystem(hardwareMap);
+        intake = new IntakeSubsystem(hardwareMap);
+        shooter = new ShooterSubsystem(hardwareMap);
         follower = PedroConstants.create(hardwareMap);
         follower.setPose(startPose);
         follower.update();
