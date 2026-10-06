@@ -11,19 +11,17 @@ public class BluePaths {
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
     // Poses
-    private final Pose startPose = poseFactory.of(24, 24, 0);
+    public final Pose startPose = poseFactory.of(24, 24, 0);
     private final Pose scorePose = poseFactory.of(48, 48, 90);
     private final Pose parkPose = poseFactory.of(72, 48, 90);
     private final Pose flowerPose = poseFactory.of(72, 48, 90);
 
 
-    private Path startToScore() {
+    public Path startToScore() {
         return line(startPose, scorePose).linear(startPose, scorePose);
     }
     private Path park(){
         return line(scorePose, parkPose).linear(scorePose, parkPose);
     }
-
-
 
 }

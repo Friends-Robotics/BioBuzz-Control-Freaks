@@ -12,12 +12,14 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.friends.Controllers.ShooterController;
 import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.FollowPathCommand;
+import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Intake.IntakeCommand;
 import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter.ShootCommand;
 import org.firstinspires.ftc.teamcode.friends.commands.FTCSpecific.Shooter.SpinUpShooterCommand;
 import org.firstinspires.ftc.teamcode.friends.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.friends.subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.friends.subsystems.ShooterSubsystem;
 import org.firstinspires.ftc.teamcode.pedro.PedroConstants;
+import org.firstinspires.ftc.teamcode.pedroPathing.Paths.BluePaths;
 
 
 import Utils.Constants;
@@ -31,6 +33,7 @@ import commands.base.CommandScheduler;
 public class AutoBlue extends OpMode {
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
+    BluePaths paths;
 
     private Follower follower;
     CommandScheduler scheduler = new CommandScheduler();
@@ -42,19 +45,13 @@ public class AutoBlue extends OpMode {
 
     ShooterController controller;
 
-    private final Pose startPose = poseFactory.of(24, 24, 0);
-    private final Pose shootPose = poseFactory.of(24, 24, 0);
-
-    private Path startToShoot() {
-        return line(startPose, shootPose).linear(startPose, shootPose);
-    }
 
     Command auto = new SequentialCommandGroup(
+            new ShootCommand(shooter, controller, intake,Constants.Shooter.TARGET_RPM),
             new DeadlineCommandGroup(
-                    new FollowPathCommand(follower, startToShoot(),drive),
-                    new SpinUpShooterCommand(shooter, controller ,Constants.Shooter.TARGET_RPM )
-            ),
-            new ShootCommand(shooter, controller, intake,Constants.Shooter.TARGET_RPM)
+                    new FollowPathCommand(follower, paths.startToScore(), drive),
+                    new IntakeCommand(intake, 1)
+            )
     );
 
     @Override
@@ -64,7 +61,7 @@ public class AutoBlue extends OpMode {
         intake = new IntakeSubsystem(hardwareMap);
         shooter = new ShooterSubsystem(hardwareMap);
         follower = PedroConstants.create(hardwareMap);
-        follower.setPose(startPose);
+        follower.setPose(paths.startPose);
         follower.update();
     }
     @Override
