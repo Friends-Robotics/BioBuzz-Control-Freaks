@@ -9,7 +9,7 @@ public class WaitCommand implements Command {
 
     public WaitCommand(double duration) {
         this.duration = duration;
-    }
+    } //In seconds pretty sure
 
     @Override
     public void initialize() {

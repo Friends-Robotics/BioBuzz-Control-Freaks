@@ -26,6 +26,10 @@ import Utils.Constants;
 import commands.Groups.DeadlineCommandGroup;
 import commands.Groups.SequentialCommandGroup;
 
+import commands.UtilCommands.ConditionalCommand;
+import commands.UtilCommands.TimeoutCommand;
+import commands.UtilCommands.WaitCommand;
+import commands.UtilCommands.WaitUntilCommand;
 import commands.base.Command;
 import commands.base.CommandScheduler;
 
@@ -48,10 +52,20 @@ public class AutoBlue extends OpMode {
 
     Command auto = new SequentialCommandGroup(
             new ShootCommand(shooter, controller, intake,Constants.Shooter.TARGET_RPM),
+            new FollowPathCommand(follower, paths.startIntake(), drive),
+            new TimeoutCommand(new IntakeCommand(intake, 1), 3),
             new DeadlineCommandGroup(
-                    new FollowPathCommand(follower, paths.startToScore(), drive),
-                    new IntakeCommand(intake, 1)
-            )
+                    new FollowPathCommand(follower, paths.intakeShoot(), drive),
+                    new SpinUpShooterCommand(shooter, controller, Constants.Shooter.TARGET_RPM)
+            ),
+            new ShootCommand(shooter, controller, intake,Constants.Shooter.TARGET_RPM),
+            new FollowPathCommand(follower, paths.shootFlower(), drive),
+            new TimeoutCommand(new IntakeCommand(intake, 1), 3),
+            new DeadlineCommandGroup(
+                    new FollowPathCommand(follower, paths.flowerShoot(), drive),
+                    new SpinUpShooterCommand(shooter, controller, Constants.Shooter.TARGET_RPM)
+            ),
+            new ShootCommand(shooter, controller, intake,Constants.Shooter.TARGET_RPM)
     );
 
     @Override
@@ -61,7 +75,7 @@ public class AutoBlue extends OpMode {
         intake = new IntakeSubsystem(hardwareMap);
         shooter = new ShooterSubsystem(hardwareMap);
         follower = PedroConstants.create(hardwareMap);
-        follower.setPose(paths.startPose);
+        follower.setPose(paths.start);
         follower.update();
     }
     @Override
