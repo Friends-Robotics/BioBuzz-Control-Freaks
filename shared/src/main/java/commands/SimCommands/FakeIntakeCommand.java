@@ -3,7 +3,7 @@ package commands.SimCommands;
 import commands.base.Command;
 
 public class FakeIntakeCommand implements Command {
-    int cycle = 0;
+    int cycle = 1;
     @Override
     public void initialize() {
         System.out.println("Intake started");

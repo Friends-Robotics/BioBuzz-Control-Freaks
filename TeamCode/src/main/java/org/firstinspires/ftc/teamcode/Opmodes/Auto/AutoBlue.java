@@ -35,8 +35,6 @@ import commands.base.CommandScheduler;
 
 @Autonomous
 public class AutoBlue extends OpMode {
-
-    private final PoseFactory poseFactory = PoseFactory.degrees();
     BluePaths paths;
 
     private Follower follower;

@@ -19,7 +19,7 @@ public class FakeFollowPathCommand implements Command {
 
     @Override
     public boolean isFinished() {
-        return cycles >= 100;
+        return cycles >= 10;
     }
 
     @Override
