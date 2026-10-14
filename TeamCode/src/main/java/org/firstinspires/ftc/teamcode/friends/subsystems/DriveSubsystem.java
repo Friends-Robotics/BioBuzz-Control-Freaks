@@ -1,16 +1,17 @@
 package org.firstinspires.ftc.teamcode.friends.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import commands.base.Subsystem;
 
 public class DriveSubsystem implements Subsystem{
 
-    private final DcMotor BRM;
-    private final DcMotor BLM;
-    private final DcMotor FRM;
-    private final DcMotor FLM;
+    private final DcMotorEx BRM;
+    private final DcMotorEx BLM;
+    private final DcMotorEx FRM;
+    private final DcMotorEx FLM;
 
     public static final double DEADBAND = 0.05;
     public static final double SPEED_MULTIPLIER = 0.8;
@@ -23,19 +24,19 @@ public class DriveSubsystem implements Subsystem{
     private double lastBR = 0;
 
     public DriveSubsystem(com.qualcomm.robotcore.hardware.HardwareMap hardwareMap) {
-        FRM = hardwareMap.get(DcMotor.class, "FRM");
+        FRM = hardwareMap.get(DcMotorEx.class, "RFM");
         FRM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FRM.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        FLM = hardwareMap.get(DcMotor.class, "FLM");
+        FLM = hardwareMap.get(DcMotorEx.class, "LFM");
         FLM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FLM.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        BRM = hardwareMap.get(DcMotor.class, "BRM");
+        BRM = hardwareMap.get(DcMotorEx.class, "RBM");
         BRM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BRM.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        BLM = hardwareMap.get(DcMotor.class, "BLM");
+        BLM = hardwareMap.get(DcMotorEx.class, "LBM");
         BLM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BLM.setDirection(DcMotorSimple.Direction.REVERSE);
     }
@@ -64,7 +65,7 @@ public class DriveSubsystem implements Subsystem{
         lastFR = ramp(lastFR, targetFR * SPEED_MULTIPLIER);
         lastBR = ramp(lastBR, targetBR * SPEED_MULTIPLIER);
 
-        FLM.setPower(lastFL);
+        FRM.setPower(lastFL);
         BLM.setPower(lastBL);
         FRM.setPower(lastFR);
         BRM.setPower(lastBR);
